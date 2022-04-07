@@ -57,7 +57,7 @@ dependencies {
 }
 
 task test_performance(type: Test, description: 'Performance test', group: 'Verification') {}
-sourcesJar(type: Jar) {
+task sourcesJar(type: Jar) {
     classifier = 'sources'
     from sourceSets.main.allSource
 }
