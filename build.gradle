@@ -57,7 +57,7 @@ dependencies {
 }
 
 task test_performance(type: Test, description: 'Performance test', group: 'Verification') {}
-task sourcesJar(type: Jar) {
+sourcesJar(type: Jar) {
     classifier = 'sources'
     from sourceSets.main.allSource
 }
@@ -80,11 +80,11 @@ uploadArchives {
             beforeDeployment { MavenDeployment deployment -> signing.signPom(deployment) }
 
             repository(url: "https://s01.oss.sonatype.org/service/local/staging/deploy/maven2/") {
-                authentication(userName: 'developerForome', password: 'FT39MzT7PyA6EkZ&')
+                authentication(userName: ossrhUsername, password: ossrhPassword)
             }
 
             snapshotRepository(url: "https://s01.oss.sonatype.org/content/repositories/snapshots/") {
-                authentication(userName: 'developerForome', password: 'FT39MzT7PyA6EkZ&')
+                authentication(userName: ossrhUsername, password: ossrhPassword)
             }
 
             pom.project {
