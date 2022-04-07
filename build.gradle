@@ -1,11 +1,11 @@
-group 'org.forome'
-version '1.13.2'
-
-plugins{
+plugins {
     id 'java'
     id 'maven'
     id 'signing'
 }
+
+group 'org.forome'
+version '1.13.2'
 
 compileJava.options.encoding = 'UTF-8'
 compileTestJava.options.encoding = 'UTF-8'
