@@ -57,7 +57,7 @@ dependencies {
 }
 
 task test_performance(type: Test, description: 'Performance test', group: 'Verification') {}
-task sourcesJar(type: Jar) {
+task sourcesAdditionalJar(type: Jar) {
     classifier = 'sources'
     from sourceSets.main.allSource
 }
@@ -67,7 +67,7 @@ task javadocJar(type: Jar) {
 }
 
 artifacts {
-    archives javadocJar, sourcesJar
+    archives javadocJar, sourcesAdditionalJar
 }
 
 signing {
