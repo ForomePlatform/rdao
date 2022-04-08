@@ -55,7 +55,7 @@ public class HashIndexIteratorTest extends StoreFileDataTest {
         HashFilter filter = new HashFilter(StoreFileReadable.FIELD_SIZE, sizeExpected).appendField(StoreFileReadable.FIELD_FILE_NAME, nameExpected);
 
         try (RecordIterator iterator = recordSource
-                .select("StoreFile", "org.infomaximum.store", filter)){
+                .select("StoreFile", "org.forome.store", filter)){
             int iteratedRecordCount = 0;
             while (iterator.hasNext()) {
                 Record storeFile = iterator.next();
@@ -74,7 +74,7 @@ public class HashIndexIteratorTest extends StoreFileDataTest {
 
         HashFilter filter = new HashFilter(StoreFileReadable.FIELD_SIZE, 9L);
         try (RecordIterator iterator = recordSource
-                .select("StoreFile", "org.infomaximum.store", filter)) {
+                .select("StoreFile", "org.forome.store", filter)) {
             while (iterator.hasNext()) {
                 Record storeFile = iterator.next();
                 actual.add(storeFile);
@@ -96,7 +96,7 @@ public class HashIndexIteratorTest extends StoreFileDataTest {
 
         HashFilter filter = new HashFilter(StoreFileReadable.FIELD_SIZE, null);
         try (RecordIterator iterator = recordSource
-                .select("StoreFile", "org.infomaximum.store", filter)) {
+                .select("StoreFile", "org.forome.store", filter)) {
             int iteratedRecordCount = 0;
             while (iterator.hasNext()) {
                 Record storeFile = iterator.next();
@@ -149,12 +149,12 @@ public class HashIndexIteratorTest extends StoreFileDataTest {
         });
 
         try (RecordIterator iterator = recordSource
-                .select("StoreFile", "org.infomaximum.store", new HashFilter(StoreFileReadable.FIELD_SIZE, 50L))) {
+                .select("StoreFile", "org.forome.store", new HashFilter(StoreFileReadable.FIELD_SIZE, 50L))) {
             Assertions.assertThat(iterator.hasNext()).isFalse();
         }
 
         try (RecordIterator iterator = recordSource
-                .select("StoreFile", "org.infomaximum.store", new HashFilter(StoreFileReadable.FIELD_SIZE, 30L))) {
+                .select("StoreFile", "org.forome.store", new HashFilter(StoreFileReadable.FIELD_SIZE, 30L))) {
             int count = 0;
             while (iterator.hasNext()) {
                 iterator.next();
@@ -164,17 +164,17 @@ public class HashIndexIteratorTest extends StoreFileDataTest {
         }
 
         try (RecordIterator iterator = recordSource
-                .select("StoreFile", "org.infomaximum.store", new HashFilter(StoreFileReadable.FIELD_FILE_NAME, "unknown"))) {
+                .select("StoreFile", "org.forome.store", new HashFilter(StoreFileReadable.FIELD_FILE_NAME, "unknown"))) {
             Assertions.assertThat(iterator.hasNext()).isFalse();
         }
 
         try (RecordIterator iterator = recordSource
-                .select("StoreFile", "org.infomaximum.store",  new HashFilter(StoreFileReadable.FIELD_FILE_NAME, nameExpected))) {
+                .select("StoreFile", "org.forome.store",  new HashFilter(StoreFileReadable.FIELD_FILE_NAME, nameExpected))) {
             Assertions.assertThat(iterator.hasNext()).isTrue();
         }
 
         try (RecordIterator iterator = recordSource
-                .select("StoreFile", "org.infomaximum.store", new HashFilter(StoreFileReadable.FIELD_FILE_NAME, nameExpected))) {
+                .select("StoreFile", "org.forome.store", new HashFilter(StoreFileReadable.FIELD_FILE_NAME, nameExpected))) {
             int count = 0;
             while (iterator.hasNext()) {
                 iterator.next();
@@ -201,12 +201,12 @@ public class HashIndexIteratorTest extends StoreFileDataTest {
         });
 
         try (RecordIterator iterator = recordSource
-                .select("StoreFile", "org.infomaximum.store", new HashFilter(StoreFileReadable.FIELD_FILE_NAME, nameCol2))) {
+                .select("StoreFile", "org.forome.store", new HashFilter(StoreFileReadable.FIELD_FILE_NAME, nameCol2))) {
             Assertions.assertThat(iterator.hasNext()).isFalse();
         }
 
         try (RecordIterator iterator = recordSource
-                .select("StoreFile", "org.infomaximum.store", new HashFilter(StoreFileReadable.FIELD_FILE_NAME, nameCol1))) {
+                .select("StoreFile", "org.forome.store", new HashFilter(StoreFileReadable.FIELD_FILE_NAME, nameCol1))) {
             int count = 0;
             while (iterator.hasNext()) {
                 iterator.next();

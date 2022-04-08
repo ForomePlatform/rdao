@@ -5,7 +5,7 @@ import org.forome.database.anotation.Field;
 import org.forome.database.domainobject.DomainObject;
 
 @Entity(
-        namespace = "org.infomaximum.store",
+        namespace = "org.forome.store",
         name = "rocksdb.record",
         fields = {
                 @Field(number = RecordReadable.FIELD_STRING_1, name = "str1", type = String.class),

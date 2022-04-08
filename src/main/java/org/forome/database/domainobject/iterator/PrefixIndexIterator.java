@@ -1,8 +1,8 @@
 package org.forome.database.domainobject.iterator;
 
-import org.google.common.collect.Range;
-import org.google.common.collect.RangeSet;
-import org.google.common.collect.TreeRangeSet;
+import com.google.common.collect.Range;
+import com.google.common.collect.RangeSet;
+import com.google.common.collect.TreeRangeSet;
 import org.forome.database.domainobject.DataEnumerable;
 import org.forome.database.domainobject.DomainObject;
 import org.forome.database.domainobject.filter.PrefixFilter;

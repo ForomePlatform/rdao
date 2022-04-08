@@ -4,7 +4,7 @@ import org.forome.database.Record;
 import org.forome.database.RecordIterator;
 import org.forome.database.domainobject.StoreFileDataTest;
 import org.forome.database.domainobject.filter.*;
-import org.infomaximum.database.domainobject.filter.*;
+import org.forome.database.domainobject.filter.*;
 import org.forome.database.exception.ForeignDependencyException;
 import org.forome.database.utils.TableUtils;
 import org.forome.domain.StoreFileReadable;
@@ -26,8 +26,8 @@ public class DataCommandInsertTest extends StoreFileDataTest {
         String[] fields = new String[]{"name"};
         Object[] values = new Object[]{"objName"};
         long id = recordSource.executeFunctionTransactional(dataCommand ->
-                dataCommand.insertRecord("StoreFile", "org.infomaximum.store", fields, values));
-        assertThatDBContainsRecord(id, fields, values, "StoreFile", "org.infomaximum.store");
+                dataCommand.insertRecord("StoreFile", "org.forome.store", fields, values));
+        assertThatDBContainsRecord(id, fields, values, "StoreFile", "org.forome.store");
     }
 
     @Test
@@ -35,8 +35,8 @@ public class DataCommandInsertTest extends StoreFileDataTest {
         String[] fields = new String[]{"size", "end_time"};
         Object[] values = new Object[]{3L, Instant.now()};
         long id = recordSource.executeFunctionTransactional(dataCommand ->
-                dataCommand.insertRecord("StoreFile", "org.infomaximum.store", fields, values));
-        assertThatDBContainsRecord(id, fields, values, "StoreFile", "org.infomaximum.store");
+                dataCommand.insertRecord("StoreFile", "org.forome.store", fields, values));
+        assertThatDBContainsRecord(id, fields, values, "StoreFile", "org.forome.store");
     }
 
     @Test
@@ -65,18 +65,18 @@ public class DataCommandInsertTest extends StoreFileDataTest {
                 LocalDateTime.now(),
         };
         long id = recordSource.executeFunctionTransactional(dataCommand ->
-                dataCommand.insertRecord("StoreFile", "org.infomaximum.store", fields, values));
-        assertThatDBContainsRecord(id, fields, values, "StoreFile", "org.infomaximum.store");
+                dataCommand.insertRecord("StoreFile", "org.forome.store", fields, values));
+        assertThatDBContainsRecord(id, fields, values, "StoreFile", "org.forome.store");
     }
 
     @Test
     public void insertWithAllAndDependencyFields() throws Exception {
         String tableName = "StoreFile";
-        String namespace = "org.infomaximum.store";
+        String namespace = "org.forome.store";
         String[] folderFields = new String[] {"uuid"};
         String[] folderFieldValues = new String[] {"uuid"};
         long folderId = recordSource.executeFunctionTransactional(dataCommand ->
-                dataCommand.insertRecord("ExchangeFolder", "org.infomaximum.exchange", folderFields, folderFieldValues));
+                dataCommand.insertRecord("ExchangeFolder", "org.forome.exchange", folderFields, folderFieldValues));
 
         LocalDateTime localBegin = LocalDateTime.ofEpochSecond(1604589065, 0, ZoneOffset.UTC);
         LocalDateTime localEnd = LocalDateTime.ofEpochSecond(1604599965, 0, ZoneOffset.UTC);
@@ -139,11 +139,11 @@ public class DataCommandInsertTest extends StoreFileDataTest {
     @Test
     public void insertManyObjectsWithAllAndDependencyFields() throws Exception {
         String tableName = "StoreFile";
-        String namespace = "org.infomaximum.store";
+        String namespace = "org.forome.store";
         String[] folderFields = new String[] {"uuid"};
         String[] folderFieldValues = new String[] {"uuid"};
         long folderId = recordSource.executeFunctionTransactional(dataCommand ->
-                dataCommand.insertRecord("ExchangeFolder", "org.infomaximum.exchange", folderFields, folderFieldValues));
+                dataCommand.insertRecord("ExchangeFolder", "org.forome.exchange", folderFields, folderFieldValues));
 
         LocalDateTime localBegin = LocalDateTime.ofEpochSecond(1604589065, 0, ZoneOffset.UTC);
         LocalDateTime localEnd = LocalDateTime.ofEpochSecond(1604599965, 0, ZoneOffset.UTC);
@@ -207,7 +207,7 @@ public class DataCommandInsertTest extends StoreFileDataTest {
     @Test
     public void failForeignDependencyExceptionNotExistingReferencingObject() {
         String tableName = "StoreFile";
-        String namespace = "org.infomaximum.store";
+        String namespace = "org.forome.store";
 
         String[] fields = new String[]{"size",
                 "folder_id"};
@@ -223,7 +223,7 @@ public class DataCommandInsertTest extends StoreFileDataTest {
         String[] folderFields = new String[] {"uuid"};
         String[] folderFieldValues = new String[] {"uuid"};
         long folderId = recordSource.executeFunctionTransactional(dataCommand ->
-                dataCommand.insertRecord("ExchangeFolder", "org.infomaximum.exchange", folderFields, folderFieldValues));
+                dataCommand.insertRecord("ExchangeFolder", "org.forome.exchange", folderFields, folderFieldValues));
 
         String[] fields = new String[]{"size",
                 "name",

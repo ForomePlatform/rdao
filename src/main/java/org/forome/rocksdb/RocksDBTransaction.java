@@ -7,7 +7,7 @@ import org.forome.database.provider.DBIterator;
 import org.forome.database.provider.DBTransaction;
 import org.forome.database.provider.KeyPattern;
 import org.forome.database.utils.ByteInterval;
-import org.google.common.primitives.UnsignedBytes;
+import com.google.common.primitives.UnsignedBytes;
 import org.rocksdb.ColumnFamilyHandle;
 import org.rocksdb.RocksDBException;
 import org.rocksdb.RocksIterator;

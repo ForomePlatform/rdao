@@ -2,11 +2,11 @@ package org.forome.domain;
 
 import org.forome.database.anotation.Entity;
 import org.forome.database.anotation.Field;
-import org.infomaximum.database.anotation.*;
+import org.forome.database.anotation.*;
 import org.forome.database.domainobject.DomainObject;
 
 @Entity(
-        namespace = "org.infomaximum.self",
+        namespace = "org.forome.self",
         name = "SelfDependency",
         fields = {
                 @Field(number = SelfDependencyReadable.FIELD_DEPENDENCE_ID, name = "dependence", type = Long.class, foreignDependency = SelfDependencyReadable.class),

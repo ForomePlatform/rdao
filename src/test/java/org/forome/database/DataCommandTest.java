@@ -25,7 +25,7 @@ public class DataCommandTest extends StoreFileDataTest {
         final int insertedRecordCount = 10;
         Collection<? extends DomainObject> expected = initAndFillStoreFiles(domainObjectSource, insertedRecordCount);
 
-        try (RecordIterator iterator = recordSource.select("StoreFile", "org.infomaximum.store")){
+        try (RecordIterator iterator = recordSource.select("StoreFile", "org.forome.store")){
             List<Record> actual = new ArrayList<>();
             while (iterator.hasNext()) {
                 actual.add(iterator.next());
@@ -36,7 +36,7 @@ public class DataCommandTest extends StoreFileDataTest {
 
     @Test()
     public void selectAllIteratorNoneObjects() {
-        try (RecordIterator iterator = recordSource.select("StoreFile", "org.infomaximum.store")){
+        try (RecordIterator iterator = recordSource.select("StoreFile", "org.forome.store")){
             Assertions.assertThat(iterator.hasNext()).isFalse();
         }
     }
@@ -51,7 +51,7 @@ public class DataCommandTest extends StoreFileDataTest {
             transaction.commit();
         }
 
-        try (RecordIterator iterator = recordSource.select("StoreFile", "org.infomaximum.store")){
+        try (RecordIterator iterator = recordSource.select("StoreFile", "org.forome.store")){
             Assertions.assertThatThrownBy(() -> {
                 while (iterator.hasNext()) {
                     iterator.next();
@@ -65,7 +65,7 @@ public class DataCommandTest extends StoreFileDataTest {
         final int insertedRecordCount = 10;
         initAndFillStoreFiles(domainObjectSource, insertedRecordCount);
 
-        try (RecordIterator iterator = recordSource.select("StoreFile", "org.infomaximum.store")){
+        try (RecordIterator iterator = recordSource.select("StoreFile", "org.forome.store")){
             int iteratedRecordCount = 0;
             long prevId = 0;
             while (iterator.hasNext()) {
@@ -155,7 +155,7 @@ public class DataCommandTest extends StoreFileDataTest {
         Collection<? extends DomainObject> expected = initAndFillStoreFiles(domainObjectSource, insertedRecordCount);
 
         try (RecordIterator iterator = recordSource
-                .select("StoreFile", "org.infomaximum.store", new HashFilter(StoreFileReadable.FIELD_FILE_NAME, "name"))){
+                .select("StoreFile", "org.forome.store", new HashFilter(StoreFileReadable.FIELD_FILE_NAME, "name"))){
             List<Record> actual = new ArrayList<>();
             while (iterator.hasNext()) {
                 actual.add(iterator.next());
@@ -171,7 +171,7 @@ public class DataCommandTest extends StoreFileDataTest {
         List<? extends DomainObject> dbData = initAndFillStoreFiles(domainObjectSource, insertedRecordCount);
 
         try (RecordIterator iterator = recordSource
-                .select("StoreFile", "org.infomaximum.store", new HashFilter(StoreFileReadable.FIELD_SIZE, 2L))){
+                .select("StoreFile", "org.forome.store", new HashFilter(StoreFileReadable.FIELD_SIZE, 2L))){
             List<Record> actual = new ArrayList<>();
             while (iterator.hasNext()) {
                 actual.add(iterator.next());
@@ -187,7 +187,7 @@ public class DataCommandTest extends StoreFileDataTest {
         List<? extends DomainObject> dbData = initAndFillStoreFiles(domainObjectSource, insertedRecordCount);
 
         try (RecordIterator iterator = recordSource
-                .select("StoreFile", "org.infomaximum.store", new HashFilter(StoreFileReadable.FIELD_SIZE, 2L)
+                .select("StoreFile", "org.forome.store", new HashFilter(StoreFileReadable.FIELD_SIZE, 2L)
                         .appendField(StoreFileReadable.FIELD_FILE_NAME, "name"))){
             List<Record> actual = new ArrayList<>();
             while (iterator.hasNext()) {
@@ -204,7 +204,7 @@ public class DataCommandTest extends StoreFileDataTest {
         List<? extends DomainObject> expected = initAndFillStoreFiles(domainObjectSource, insertedRecordCount);
 
         try (RecordIterator iterator = recordSource
-                .select("StoreFile", "org.infomaximum.store", new HashFilter(StoreFileReadable.FIELD_SINGLE, true)
+                .select("StoreFile", "org.forome.store", new HashFilter(StoreFileReadable.FIELD_SINGLE, true)
                         .appendField(StoreFileReadable.FIELD_FILE_NAME, "name"))){
             List<Record> actual = new ArrayList<>();
             while (iterator.hasNext()) {
@@ -220,7 +220,7 @@ public class DataCommandTest extends StoreFileDataTest {
         final int insertedRecordCount = 10;
         initAndFillStoreFiles(domainObjectSource, insertedRecordCount);
         try (RecordIterator iterator = recordSource
-                .select("StoreFile", "org.infomaximum.store", new HashFilter(StoreFileReadable.FIELD_SINGLE, false)
+                .select("StoreFile", "org.forome.store", new HashFilter(StoreFileReadable.FIELD_SINGLE, false)
                         .appendField(StoreFileReadable.FIELD_FILE_NAME, "name"))){
             Assertions.assertThat(iterator.hasNext()).isFalse();
         }
@@ -231,7 +231,7 @@ public class DataCommandTest extends StoreFileDataTest {
     @DisplayName("Проверка HashIndex итератора. Не должен упасть с NPE при отстутствии объектов в бд")
     public void selectHashIteratorNoneObjects() {
         try (RecordIterator iterator = recordSource
-                .select("StoreFile", "org.infomaximum.store", new HashFilter(StoreFileReadable.FIELD_SINGLE, false)
+                .select("StoreFile", "org.forome.store", new HashFilter(StoreFileReadable.FIELD_SINGLE, false)
                         .appendField(StoreFileReadable.FIELD_FILE_NAME, "name"))) {
             Assertions.assertThat(iterator.hasNext()).isFalse();
         }
@@ -248,7 +248,7 @@ public class DataCommandTest extends StoreFileDataTest {
             transaction.commit();
         }
         try (RecordIterator iterator = recordSource
-                .select("StoreFile", "org.infomaximum.store", new HashFilter(StoreFileReadable.FIELD_FILE_NAME, "name"))) {
+                .select("StoreFile", "org.forome.store", new HashFilter(StoreFileReadable.FIELD_FILE_NAME, "name"))) {
             while (iterator.hasNext()) {
                 iterator.next();
             }
@@ -262,7 +262,7 @@ public class DataCommandTest extends StoreFileDataTest {
         initAndFillStoreFiles(domainObjectSource, insertedRecordCount);
 
         try (RecordIterator iterator = recordSource
-                .select("StoreFile", "org.infomaximum.store", new HashFilter(StoreFileReadable.FIELD_FILE_NAME, "name"))){
+                .select("StoreFile", "org.forome.store", new HashFilter(StoreFileReadable.FIELD_FILE_NAME, "name"))){
             int iteratedRecordCount = 0;
             long prevId = 0;
             while (iterator.hasNext()) {

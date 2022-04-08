@@ -7,7 +7,7 @@ import org.forome.database.domainobject.DomainObject;
 import org.forome.database.exception.FieldNotFoundException;
 import org.forome.database.exception.IndexNotFoundException;
 import org.forome.database.exception.StructEntityException;
-import org.infomaximum.database.anotation.*;
+import org.forome.database.anotation.*;
 import org.forome.database.utils.ByteUtils;
 import org.forome.database.utils.TypeConvert;
 

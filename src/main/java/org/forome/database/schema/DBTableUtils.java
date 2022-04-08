@@ -4,8 +4,8 @@ import org.forome.database.exception.FieldNotFoundException;
 import org.forome.database.exception.SchemaException;
 import org.forome.database.schema.dbstruct.*;
 import org.forome.database.schema.table.*;
-import org.infomaximum.database.schema.dbstruct.*;
-import org.infomaximum.database.schema.table.*;
+import org.forome.database.schema.dbstruct.*;
+import org.forome.database.schema.table.*;
 
 import java.util.Arrays;
 import java.util.Comparator;

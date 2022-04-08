@@ -1,7 +1,7 @@
 package org.forome.database.utils;
 
-import org.google.common.primitives.Bytes;
-import org.google.common.primitives.UnsignedBytes;
+import com.google.common.primitives.Bytes;
+import com.google.common.primitives.UnsignedBytes;
 
 public class ByteInterval {
 

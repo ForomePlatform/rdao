@@ -317,7 +317,7 @@ public class IntervalIndexIteratorTest extends StoreFileDataTest {
 
         try (Transaction transaction = domainObjectSource.buildTransaction()) {
             try (RecordIterator iterator = recordSource
-                    .select("StoreFile", "org.infomaximum.store",
+                    .select("StoreFile", "org.forome.store",
                             new IntervalFilter(StoreFileReadable.FIELD_SIZE, 10L, 20L)
                                     .appendHashedField(StoreFileEditable.FIELD_FILE_NAME, name))) {
                 List<Long> ids = new ArrayList<>();
@@ -399,7 +399,7 @@ public class IntervalIndexIteratorTest extends StoreFileDataTest {
 
     private <T> List<T> getValues(IntervalFilter filter) throws DatabaseException {
         try (RecordIterator iterator = recordSource
-                .select("StoreFile", "org.infomaximum.store",  filter)) {
+                .select("StoreFile", "org.forome.store",  filter)) {
             List<T> result = new ArrayList<>();
             while (iterator.hasNext()) {
                 Record storeFile = iterator.next();
@@ -412,7 +412,7 @@ public class IntervalIndexIteratorTest extends StoreFileDataTest {
 
     private List<Long> getIds(IntervalFilter filter) throws DatabaseException {
         try (RecordIterator iterator = recordSource
-                .select("StoreFile", "org.infomaximum.store", filter)) {
+                .select("StoreFile", "org.forome.store", filter)) {
             List<Long> result = new ArrayList<>();
             while (iterator.hasNext()) {
                 Record storeFile = iterator.next();

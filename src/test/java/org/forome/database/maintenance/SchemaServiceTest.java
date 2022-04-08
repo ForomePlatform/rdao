@@ -19,7 +19,7 @@ public class SchemaServiceTest extends DomainDataTest {
         createDomain(StoreFileReadable.class);
 
         new SchemaService(rocksDBProvider)
-                .setNamespace("org.infomaximum.store")
+                .setNamespace("org.forome.store")
                 .setValidationMode(true)
                 .setSchema(Schema.read(rocksDBProvider))
                 .execute();
@@ -31,7 +31,7 @@ public class SchemaServiceTest extends DomainDataTest {
 //    public void validateInvalidScheme() throws DatabaseException {
 //        try {
 //            new SchemaService(rocksDBProvider)
-//                    .setNamespace("org.infomaximum.store")
+//                    .setNamespace("org.forome.store")
 //                    .setValidationMode(true)
 //                    .setSchema(Schema.read(rocksDBProvider))
 //                    .execute();
@@ -44,7 +44,7 @@ public class SchemaServiceTest extends DomainDataTest {
     @Test
     public void removeInvalidScheme() throws DatabaseException {
         new SchemaService(rocksDBProvider)
-                .setNamespace("org.infomaximum.store")
+                .setNamespace("org.forome.store")
                 .setChangeMode(ChangeMode.REMOVAL)
                 .setValidationMode(false)
                 .setSchema(Schema.read(rocksDBProvider))
@@ -54,7 +54,7 @@ public class SchemaServiceTest extends DomainDataTest {
     @Test
     public void createAndValidateScheme() throws DatabaseException {
         new SchemaService(rocksDBProvider)
-                .setNamespace("org.infomaximum.store")
+                .setNamespace("org.forome.store")
                 .setChangeMode(ChangeMode.CREATION)
                 .setValidationMode(true)
                 .setSchema(Schema.read(rocksDBProvider))
@@ -67,11 +67,11 @@ public class SchemaServiceTest extends DomainDataTest {
 //        createDomain(ExchangeFolderEditable.class);
 //        createDomain(StoreFileReadable.class);
 //
-//        rocksDBProvider.createColumnFamily("org.infomaximum.store.new_StoreFile.some_prefix");
+//        rocksDBProvider.createColumnFamily("org.forome.store.new_StoreFile.some_prefix");
 //
 //        try {
 //            new SchemaService(rocksDBProvider)
-//                    .setNamespace("org.infomaximum.store")
+//                    .setNamespace("org.forome.store")
 //                    .setValidationMode(true)
 //                    .setSchema(Schema.read(rocksDBProvider))
 //                    .execute();
@@ -86,10 +86,10 @@ public class SchemaServiceTest extends DomainDataTest {
         createDomain(ExchangeFolderReadable.class);
         createDomain(StoreFileReadable.class);
 
-        rocksDBProvider.createColumnFamily("org.new_infomaximum.new_StoreFile.some_prefix");
+        rocksDBProvider.createColumnFamily("org.new_forome.new_StoreFile.some_prefix");
 
         new SchemaService(rocksDBProvider)
-                .setNamespace("org.infomaximum.store")
+                .setNamespace("org.forome.store")
                 .setValidationMode(true)
                 .setSchema(Schema.read(rocksDBProvider))
                 .execute();
@@ -124,7 +124,7 @@ public class SchemaServiceTest extends DomainDataTest {
         });
 
         new SchemaService(rocksDBProvider)
-                .setNamespace("org.infomaximum.store")
+                .setNamespace("org.forome.store")
                 .setValidationMode(true)
                 .setSchema(Schema.read(rocksDBProvider))
                 .execute();

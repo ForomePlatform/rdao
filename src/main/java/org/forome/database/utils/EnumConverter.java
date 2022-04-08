@@ -1,7 +1,7 @@
 package org.forome.database.utils;
 
 import org.forome.database.schema.TypeConverter;
-import org.google.common.primitives.UnsignedInts;
+import com.google.common.primitives.UnsignedInts;
 
 public abstract class EnumConverter<T extends Enum<?> & BaseEnum> implements TypeConverter<T> {
 

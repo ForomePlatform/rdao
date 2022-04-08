@@ -5,7 +5,7 @@ import org.forome.database.anotation.Field;
 import org.forome.database.domainobject.DomainObject;
 
 @Entity(
-        namespace = "org.infomaximum.exchange",
+        namespace = "org.forome.exchange",
         name = "dataTest",
         fields = {
                 @Field(number = DataTestReadable.FIELD_VALUE, name = "value", type = String.class)

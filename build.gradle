@@ -9,6 +9,19 @@ version '1.13.2'
 
 compileJava.options.encoding = 'UTF-8'
 compileTestJava.options.encoding = 'UTF-8'
+
+tasks.withType(JavaCompile) {
+    options.encoding = "UTF-8"
+}
+
+// 1st approach
+javadoc.options.encoding = 'UTF-8'
+
+// 2nd approach
+tasks.withType(Javadoc) {
+    options.encoding = 'UTF-8'
+}
+
 archivesBaseName = "rdao"
 
 if (project.hasProperty('ossrhUsername')) {
@@ -57,22 +70,6 @@ dependencies {
 }
 
 task test_performance(type: Test, description: 'Performance test', group: 'Verification') {}
-task sourcesAdditionalJar(type: Jar) {
-    classifier = 'sources'
-    from sourceSets.main.allSource
-}
-task javadocAdditionalJar(type: Jar) {
-    classifier = 'javadoc'
-    from javadoc
-}
-
-artifacts {
-    archives javadocAdditionalJar, sourcesAdditionalJar
-}
-
-signing {
-    sign configurations.archives
-}
 
 uploadArchives {
     repositories {

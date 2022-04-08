@@ -7,7 +7,7 @@ import org.forome.database.domainobject.DomainObject;
 import org.forome.database.exception.DatabaseException;
 
 @Entity(
-        namespace = "org.infomaximum.rocksdb",
+        namespace = "org.forome.rocksdb",
         name = "record",
         fields = {
                 @Field(number = RecordIndexReadable.FIELD_STRING_1, name = "str1", type = String.class),

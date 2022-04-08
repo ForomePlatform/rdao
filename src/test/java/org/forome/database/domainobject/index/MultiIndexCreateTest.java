@@ -16,7 +16,7 @@ public class MultiIndexCreateTest extends ExchangeFolderDataTest {
     @Test
     public void run() throws Exception {
         String uuid = "AQMkAGYzOGZhMGRlLTk0ZmQtNGU4Mi05YzMyLWU1YmMyODgAMzA1MzkALgAAA2q7G9o/e25DjV2GPrKtaxsBAOVhxnfq2u5Gj3QIHLYcQRoAAAIBDQAAAA==";
-        String userEmail = "test1@infomaximum.onmicrosoft.com";
+        String userEmail = "test1@forome.onmicrosoft.com";
 
         //Добавляем объект
         domainObjectSource.executeTransactional(transaction -> {

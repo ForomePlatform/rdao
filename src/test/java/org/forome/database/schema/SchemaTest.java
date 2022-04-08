@@ -59,9 +59,9 @@ class SchemaTest extends DomainDataJ5Test {
         StructEntity generalSE = new StructEntity(GeneralReadable.class);
         schema.createTable(generalSE);
 
-        assertColumnFamilies("org.infomaximum.rocksdb.general", "org.infomaximum.rocksdb.general.index");
+        assertColumnFamilies("org.forome.rocksdb.general", "org.forome.rocksdb.general.index");
         DBField field = DBTableTestUtil.buildDBField(0, "value", Long.class, null);
-        DBTable expected = DBTableTestUtil.buildDBTable(0, "general", "org.infomaximum.rocksdb", new ArrayList<DBField>() {{
+        DBTable expected = DBTableTestUtil.buildDBTable(0, "general", "org.forome.rocksdb", new ArrayList<DBField>() {{
                     add(field);
                 }});
         expected.attachIndex(DBTableTestUtil.buildDBHashIndex(field));
@@ -75,14 +75,14 @@ class SchemaTest extends DomainDataJ5Test {
         StructEntity exchangeFolder = new StructEntity(ExchangeFolderReadable.class);
         schema.createTable(exchangeFolder);
 
-        assertColumnFamilies("org.infomaximum.exchange.ExchangeFolder", "org.infomaximum.exchange.ExchangeFolder.index");
+        assertColumnFamilies("org.forome.exchange.ExchangeFolder", "org.forome.exchange.ExchangeFolder.index");
         DBField field1 = DBTableTestUtil.buildDBField(0, "uuid", String.class, null);
         DBField field2 = DBTableTestUtil.buildDBField(1, "email", String.class, null);
         DBField field3 = DBTableTestUtil.buildDBField(2, "date", Instant.class, null);
         DBField field4 = DBTableTestUtil.buildDBField(3, "state", String.class, null);
         DBField field5 = DBTableTestUtil.buildDBField(4, "parent_id", Long.class, 0);
 
-        DBTable expected = DBTableTestUtil.buildDBTable(0, "ExchangeFolder", "org.infomaximum.exchange", new ArrayList<DBField>() {{
+        DBTable expected = DBTableTestUtil.buildDBTable(0, "ExchangeFolder", "org.forome.exchange", new ArrayList<DBField>() {{
                     add(field1);
                     add(field2);
                     add(field3);
@@ -105,7 +105,7 @@ class SchemaTest extends DomainDataJ5Test {
         StructEntity storeFile = new StructEntity(StoreFileReadable.class);
         schema.createTable(storeFile);
 
-        assertColumnFamilies("org.infomaximum.store.StoreFile", "org.infomaximum.store.StoreFile.index");
+        assertColumnFamilies("org.forome.store.StoreFile", "org.forome.store.StoreFile.index");
         DBField field0 = DBTableTestUtil.buildDBField(0, "name", String.class, null);
         DBField field1 = DBTableTestUtil.buildDBField(1, "type", String.class, null);
         DBField field2 = DBTableTestUtil.buildDBField(2, "size", Long.class, null);
@@ -121,7 +121,7 @@ class SchemaTest extends DomainDataJ5Test {
         DBField field12 = DBTableTestUtil.buildDBField(12, "local_end", LocalDateTime.class, null);
         DBField field13 = DBTableTestUtil.buildDBField(13, "data", byte[].class, null);
 
-        DBTable expected = DBTableTestUtil.buildDBTable(0, "StoreFile", "org.infomaximum.store", new ArrayList<DBField>() {{
+        DBTable expected = DBTableTestUtil.buildDBTable(0, "StoreFile", "org.forome.store", new ArrayList<DBField>() {{
                     add(field0);
                     add(field1);
                     add(field2);

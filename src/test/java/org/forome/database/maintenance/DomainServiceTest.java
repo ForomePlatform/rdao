@@ -54,8 +54,8 @@ public class DomainServiceTest extends DomainDataTest {
     @Test
     public void createAll() throws Exception {
         Schema schema = Schema.read(rocksDBProvider);
-        schema.dropTable("StoreFile", "org.infomaximum.store");
-        schema.dropTable("ExchangeFolder", "org.infomaximum.exchange");
+        schema.dropTable("StoreFile", "org.forome.store");
+        schema.dropTable("ExchangeFolder", "org.forome.exchange");
         Schema.resolve(ExchangeFolderReadable.class);
         Schema.resolve(StoreFileReadable.class);
         testNotWorking();
@@ -154,7 +154,7 @@ public class DomainServiceTest extends DomainDataTest {
     @Test
     public void validateUnknownColumnFamily() {
         Schema schema = ensureSchema();
-        rocksDBProvider.createColumnFamily("org.infomaximum.store.StoreFile.some_prefix");
+        rocksDBProvider.createColumnFamily("org.forome.store.StoreFile.some_prefix");
         Assertions.assertThatExceptionOfType(InconsistentDatabaseException.class).isThrownBy(() -> new DomainService(rocksDBProvider, schema)
                 .setValidationMode(true)
                 .setDomain(Schema.getEntity(StoreFileReadable.class))

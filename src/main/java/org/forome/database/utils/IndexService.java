@@ -11,8 +11,8 @@ import org.forome.database.schema.*;
 import org.forome.database.schema.dbstruct.*;
 import org.forome.database.utils.key.IntervalIndexKey;
 import org.forome.database.utils.key.RangeIndexKey;
-import org.infomaximum.database.schema.*;
-import org.infomaximum.database.schema.dbstruct.*;
+import org.forome.database.schema.*;
+import org.forome.database.schema.dbstruct.*;
 import org.forome.database.utils.key.HashIndexKey;
 
 import java.util.*;

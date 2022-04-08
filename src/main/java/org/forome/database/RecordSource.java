@@ -6,7 +6,7 @@ import org.forome.database.provider.DBProvider;
 import org.forome.database.provider.DBTransaction;
 import org.forome.database.schema.Schema;
 import org.forome.database.schema.dbstruct.DBSchema;
-import org.infomaximum.database.domainobject.filter.*;
+import org.forome.database.domainobject.filter.*;
 
 public class RecordSource {
 

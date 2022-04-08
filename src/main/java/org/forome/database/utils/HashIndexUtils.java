@@ -7,7 +7,7 @@ import org.forome.database.exception.UnsupportedTypeException;
 import org.forome.database.schema.Field;
 import org.forome.database.schema.TypeConverter;
 import org.forome.database.schema.dbstruct.DBField;
-import org.google.common.primitives.UnsignedInts;
+import com.google.common.primitives.UnsignedInts;
 
 import java.io.Serializable;
 import java.time.Instant;

@@ -5,14 +5,14 @@ import org.forome.database.domainobject.filter.*;
 import org.forome.database.exception.*;
 import org.forome.database.schema.table.*;
 import org.forome.domain.*;
-import org.infomaximum.database.domainobject.filter.*;
+import org.forome.database.domainobject.filter.*;
 import org.forome.database.domainobject.iterator.IteratorEntity;
-import org.infomaximum.database.exception.*;
+import org.forome.database.exception.*;
 import org.forome.database.provider.DBIterator;
 import org.forome.database.provider.KeyValue;
 import org.forome.database.schema.dbstruct.DBTable;
-import org.infomaximum.database.schema.table.*;
-import org.infomaximum.domain.*;
+import org.forome.database.schema.table.*;
+import org.forome.domain.*;
 import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
@@ -41,7 +41,7 @@ public class SchemaTableTest extends DomainDataJ5Test {
             add(new TField("field2", Integer.class));
             add(new TField("field3", Long.class));
         }};
-        Table table = new Table("dataTest", "org.infomaximum.exchange", fields);
+        Table table = new Table("dataTest", "org.forome.exchange", fields);
         schema.createTable(table);
 
         assertThatSchemaContainsTable(table);
@@ -58,7 +58,7 @@ public class SchemaTableTest extends DomainDataJ5Test {
         List<THashIndex> hashIndexes = new ArrayList<THashIndex>() {{
             add(new THashIndex("value"));
         }};
-        Table table = new Table("general", "org.infomaximum.rocksdb", fields, hashIndexes);
+        Table table = new Table("general", "org.forome.rocksdb", fields, hashIndexes);
         schema.createTable(table);
 
         assertThatSchemaContainsTable(table);
@@ -74,12 +74,12 @@ public class SchemaTableTest extends DomainDataJ5Test {
             add(new TField("email", String.class));
             add(new TField("date", Instant.class));
             add(new TField("state", String.class));
-            add(new TField("parent_id", new TableReference("ExchangeFolder", "org.infomaximum.exchange")));
+            add(new TField("parent_id", new TableReference("ExchangeFolder", "org.forome.exchange")));
         }};
         List<THashIndex> hashIndexes = new ArrayList<THashIndex>() {{
             add(new THashIndex("email", "uuid"));
         }};
-        Table table = new Table("ExchangeFolder", "org.infomaximum.exchange", fields, hashIndexes);
+        Table table = new Table("ExchangeFolder", "org.forome.exchange", fields, hashIndexes);
         schema.createTable(table);
 
 
@@ -87,7 +87,7 @@ public class SchemaTableTest extends DomainDataJ5Test {
             add(new THashIndex("parent_id"));
             add(new THashIndex("email", "uuid"));
         }};
-        Table expected = new Table("ExchangeFolder", "org.infomaximum.exchange", fields, expectedHashIndexes);
+        Table expected = new Table("ExchangeFolder", "org.forome.exchange", fields, expectedHashIndexes);
         assertThatSchemaContainsTable(expected);
     }
 
@@ -103,7 +103,7 @@ public class SchemaTableTest extends DomainDataJ5Test {
             add(new TField("size", Long.class));
             add(new TField("single", Boolean.class));
             add(new TField("format", String.class));
-            add(new TField("folder_id", new TableReference("ExchangeFolder", "org.infomaximum.exchange")));
+            add(new TField("folder_id", new TableReference("ExchangeFolder", "org.forome.exchange")));
             add(new TField("double", Double.class));
             add(new TField("begin_time", Instant.class));
             add(new TField("end_time", Instant.class));
@@ -140,7 +140,7 @@ public class SchemaTableTest extends DomainDataJ5Test {
             add(new TRangeIndex("local_begin", "local_end"));
         }};
         Table table = new Table("StoreFile",
-                "org.infomaximum.store",
+                "org.forome.store",
                 fields,
                 hashIndexes,
                 prefixIndexes,
@@ -158,7 +158,7 @@ public class SchemaTableTest extends DomainDataJ5Test {
             add(new THashIndex("local_begin"));
         }};
         Table expected = new Table("StoreFile",
-                "org.infomaximum.store",
+                "org.forome.store",
                 fields,
                 hashIndexes,
                 prefixIndexes,
@@ -207,14 +207,14 @@ public class SchemaTableTest extends DomainDataJ5Test {
 
 
         //Делаем очистку
-        schema.clearTable("StoreFile", "org.infomaximum.store");
+        schema.clearTable("StoreFile", "org.forome.store");
         assertThatTableIsEmpty(storeFolderTable);
 
-        schema.clearTable("ExchangeFolder", "org.infomaximum.exchange");
+        schema.clearTable("ExchangeFolder", "org.forome.exchange");
         assertThatTableIsEmpty(exchangeFolderTable);
 
         Table expectedStoreFile = new Table("StoreFile",
-                "org.infomaximum.store",
+                "org.forome.store",
                 storeFolderTable.getFields(),
                 storeFolderTable.getHashIndexes(),
                 storeFolderTable.getPrefixIndexes(),
@@ -224,7 +224,7 @@ public class SchemaTableTest extends DomainDataJ5Test {
         assertThatSchemaContainsTable(expectedStoreFile);
 
         Table expected = new Table("ExchangeFolder",
-                "org.infomaximum.exchange",
+                "org.forome.exchange",
                 exchangeFolderTable.getFields(),
                 exchangeFolderTable.getHashIndexes(),
                 exchangeFolderTable.getPrefixIndexes(),
@@ -271,7 +271,7 @@ public class SchemaTableTest extends DomainDataJ5Test {
             transaction.save(storeFileEditable);
         });
 
-        Assertions.assertThatThrownBy(() -> schema.clearTable("ExchangeFolder", "org.infomaximum.exchange")).isInstanceOf(TableClearException.class);
+        Assertions.assertThatThrownBy(() -> schema.clearTable("ExchangeFolder", "org.forome.exchange")).isInstanceOf(TableClearException.class);
     }
 
     //Удаление таблицы_____________________________________________
@@ -281,11 +281,11 @@ public class SchemaTableTest extends DomainDataJ5Test {
         createExchangeFolderTable();
         createStoreFolderTable();
 
-        schema.dropTable("StoreFile", "org.infomaximum.store");
-        assertTableDoesntExist("StoreFile", "org.infomaximum.store");
+        schema.dropTable("StoreFile", "org.forome.store");
+        assertTableDoesntExist("StoreFile", "org.forome.store");
 
-        schema.dropTable("ExchangeFolder", "org.infomaximum.exchange");
-        assertTableDoesntExist("ExchangeFolder", "org.infomaximum.exchange");
+        schema.dropTable("ExchangeFolder", "org.forome.exchange");
+        assertTableDoesntExist("ExchangeFolder", "org.forome.exchange");
     }
 
     @Test
@@ -294,7 +294,7 @@ public class SchemaTableTest extends DomainDataJ5Test {
         createExchangeFolderTable();
         createStoreFolderTable();
 
-        Assertions.assertThatThrownBy(() -> schema.dropTable("ExchangeFolder", "org.infomaximum.exchange"))
+        Assertions.assertThatThrownBy(() -> schema.dropTable("ExchangeFolder", "org.forome.exchange"))
                 .isExactlyInstanceOf(TableRemoveException.class);
     }
 
@@ -317,8 +317,8 @@ public class SchemaTableTest extends DomainDataJ5Test {
     void failCreateFieldBecauseForeignTableDoesntExist() throws Exception {
         createGeneralTable();
         TField newFieldWithDependence = new TField("newFieldWithDependence", new TableReference("ExchangeFolder",
-                "org.infomaximum.exchange"));
-        Assertions.assertThatThrownBy(() -> schema.createField(newFieldWithDependence, "general", "org.infomaximum.rocksdb"))
+                "org.forome.exchange"));
+        Assertions.assertThatThrownBy(() -> schema.createField(newFieldWithDependence, "general", "org.forome.rocksdb"))
                 .isExactlyInstanceOf(TableNotFoundException.class);
     }
 
@@ -327,7 +327,7 @@ public class SchemaTableTest extends DomainDataJ5Test {
     void failCreateFieldWithSameName() throws Exception {
         createGeneralTable();
         TField newFieldWithDependence = new TField("value", Double.class);
-        Assertions.assertThatThrownBy(() -> schema.createField(newFieldWithDependence, "general", "org.infomaximum.rocksdb"))
+        Assertions.assertThatThrownBy(() -> schema.createField(newFieldWithDependence, "general", "org.forome.rocksdb"))
                 .isExactlyInstanceOf(FieldAlreadyExistsException.class);
     }
 
@@ -385,14 +385,14 @@ public class SchemaTableTest extends DomainDataJ5Test {
     @DisplayName("Переименование поля таблицы")
     void renameTableFieldTest() throws Exception {
         Table exchangeFolderTable = createExchangeFolderTable();
-        schema.renameField("state", "newValue", "ExchangeFolder", "org.infomaximum.exchange");
+        schema.renameField("state", "newValue", "ExchangeFolder", "org.forome.exchange");
 
         List<TField> fields = new ArrayList<TField>() {{
             add(new TField("uuid", String.class));
             add(new TField("email", String.class));
             add(new TField("date", Instant.class));
             add(new TField("newValue", String.class));
-            add(new TField("parent_id", new TableReference("ExchangeFolder", "org.infomaximum.exchange")));
+            add(new TField("parent_id", new TableReference("ExchangeFolder", "org.forome.exchange")));
         }};
         exchangeFolderTable = new Table(exchangeFolderTable.getName(), exchangeFolderTable.getNamespace(), fields, exchangeFolderTable.getHashIndexes());
         assertThatSchemaContainsTable(exchangeFolderTable);
@@ -402,14 +402,14 @@ public class SchemaTableTest extends DomainDataJ5Test {
     @DisplayName("Переименование поля таблицы у которого есть индекс")
     void renameTableFieldWithIndexTest() throws Exception {
         Table exchangeFolderTable = createExchangeFolderTable();
-        schema.renameField("email", "znew", "ExchangeFolder", "org.infomaximum.exchange");
+        schema.renameField("email", "znew", "ExchangeFolder", "org.forome.exchange");
 
         List<TField> fields = new ArrayList<TField>() {{
             add(new TField("uuid", String.class));
             add(new TField("znew", String.class));
             add(new TField("date", Instant.class));
             add(new TField("state", String.class));
-            add(new TField("parent_id", new TableReference("ExchangeFolder", "org.infomaximum.exchange")));
+            add(new TField("parent_id", new TableReference("ExchangeFolder", "org.forome.exchange")));
         }};
         List<THashIndex> expectedHashIndexes = new ArrayList<>(exchangeFolderTable.getHashIndexes());
         expectedHashIndexes.remove(1);
@@ -422,7 +422,7 @@ public class SchemaTableTest extends DomainDataJ5Test {
     @DisplayName("Ошибка переименования поля таблицы. Поле с таким именем уже существует")
     void failRenameTableFieldNameAlreadyExistsTest() throws Exception {
         createExchangeFolderTable();
-        Assertions.assertThatThrownBy(() -> schema.renameField("state", "email", "ExchangeFolder", "org.infomaximum.exchange"))
+        Assertions.assertThatThrownBy(() -> schema.renameField("state", "email", "ExchangeFolder", "org.forome.exchange"))
                 .isExactlyInstanceOf(FieldAlreadyExistsException.class);
     }
 
@@ -509,7 +509,7 @@ public class SchemaTableTest extends DomainDataJ5Test {
         schema.dropIndex(removingHashIndex, table.getName(), table.getNamespace());
         assertThatNoAnyRecords(StoreFileReadable.class, new HashFilter(StoreFileReadable.FIELD_FILE_NAME, "FileName"));
 
-        schema.createIndex(removingHashIndex, "StoreFile", "org.infomaximum.store");
+        schema.createIndex(removingHashIndex, "StoreFile", "org.forome.store");
         List<THashIndex> expectedHashes = new ArrayList<>(table.getHashIndexes());
         expectedHashes.remove(removingHashIndex);
         expectedHashes.add(removingHashIndex);
@@ -544,7 +544,7 @@ public class SchemaTableTest extends DomainDataJ5Test {
         assertThatSchemaContainsTable(expected);
         assertThatNoAnyRecords(StoreFileReadable.class, new PrefixFilter(StoreFileReadable.FIELD_FILE_NAME, "FileName"));
 
-        schema.createIndex(removingIndex, "StoreFile", "org.infomaximum.store");
+        schema.createIndex(removingIndex, "StoreFile", "org.forome.store");
         expectedHashes = new ArrayList<>(table.getPrefixIndexes());
         expectedHashes.remove(removingIndex);
         expectedHashes.add(removingIndex);
@@ -579,7 +579,7 @@ public class SchemaTableTest extends DomainDataJ5Test {
         assertThatSchemaContainsTable(expected);
         assertThatNoAnyRecords(StoreFileReadable.class, new IntervalFilter(StoreFileReadable.FIELD_SIZE, 1L, 13L));
 
-        schema.createIndex(removingIndex, "StoreFile", "org.infomaximum.store");
+        schema.createIndex(removingIndex, "StoreFile", "org.forome.store");
         expectedHashes = new ArrayList<>(table.getIntervalIndexes());
         expectedHashes.remove(removingIndex);
         expectedHashes.add(removingIndex);
@@ -614,7 +614,7 @@ public class SchemaTableTest extends DomainDataJ5Test {
         assertThatSchemaContainsTable(expected);
         assertThatNoAnyRecords(StoreFileReadable.class, new RangeFilter(new RangeFilter.IndexedField(StoreFileReadable.FIELD_BEGIN, StoreFileReadable.FIELD_END), 9L, 14L));
 
-        schema.createIndex(removingIndex, "StoreFile", "org.infomaximum.store");
+        schema.createIndex(removingIndex, "StoreFile", "org.forome.store");
         expectedHashes = new ArrayList<>(table.getRangeIndexes());
         expectedHashes.remove(removingIndex);
         expectedHashes.add(removingIndex);
@@ -638,7 +638,7 @@ public class SchemaTableTest extends DomainDataJ5Test {
         List<THashIndex> hashIndexes = new ArrayList<THashIndex>() {{
             add(new THashIndex("value"));
         }};
-        Table table = new Table("general", "org.infomaximum.rocksdb", fields, hashIndexes);
+        Table table = new Table("general", "org.forome.rocksdb", fields, hashIndexes);
         schema.createTable(table);
         domainObjectSource.executeTransactional(transaction -> {
             GeneralEditable generalEditable = transaction.create(GeneralEditable.class);
@@ -653,7 +653,7 @@ public class SchemaTableTest extends DomainDataJ5Test {
             generalEditable.setValue(12L);
             transaction.save(generalEditable);
         });
-        return schema.getTable("general", "org.infomaximum.rocksdb");
+        return schema.getTable("general", "org.forome.rocksdb");
     }
 
     private Table createExchangeFolderTable() throws Exception {
@@ -664,12 +664,12 @@ public class SchemaTableTest extends DomainDataJ5Test {
             add(new TField("email", String.class));
             add(new TField("date", Instant.class));
             add(new TField("state", String.class));
-            add(new TField("parent_id", new TableReference("ExchangeFolder", "org.infomaximum.exchange")));
+            add(new TField("parent_id", new TableReference("ExchangeFolder", "org.forome.exchange")));
         }};
         List<THashIndex> hashIndexes = new ArrayList<THashIndex>() {{
             add(new THashIndex("email", "uuid"));
         }};
-        Table table = new Table("ExchangeFolder", "org.infomaximum.exchange", fields, hashIndexes);
+        Table table = new Table("ExchangeFolder", "org.forome.exchange", fields, hashIndexes);
         schema.createTable(table);
         domainObjectSource.executeTransactional(transaction -> {
             ExchangeFolderEditable exchangeFolderEditable1 = transaction.create(ExchangeFolderEditable.class);
@@ -696,7 +696,7 @@ public class SchemaTableTest extends DomainDataJ5Test {
             transaction.save(exchangeFolderEditable3);
         });
 
-        return schema.getTable("ExchangeFolder", "org.infomaximum.exchange");
+        return schema.getTable("ExchangeFolder", "org.forome.exchange");
     }
 
     private Table createStoreFolderTable() throws Exception {
@@ -708,7 +708,7 @@ public class SchemaTableTest extends DomainDataJ5Test {
             add(new TField("size", Long.class));
             add(new TField("single", Boolean.class));
             add(new TField("format", String.class));
-            add(new TField("folder_id", new TableReference("ExchangeFolder", "org.infomaximum.exchange")));
+            add(new TField("folder_id", new TableReference("ExchangeFolder", "org.forome.exchange")));
             add(new TField("double", Double.class));
             add(new TField("begin_time", Instant.class));
             add(new TField("end_time", Instant.class));
@@ -745,7 +745,7 @@ public class SchemaTableTest extends DomainDataJ5Test {
             add(new TRangeIndex("local_begin", "local_end"));
         }};
         Table table = new Table("StoreFile",
-                "org.infomaximum.store",
+                "org.forome.store",
                 fields,
                 hashIndexes,
                 prefixIndexes,
@@ -779,7 +779,7 @@ public class SchemaTableTest extends DomainDataJ5Test {
             storeFileEditable.setDouble(13.123);
             transaction.save(storeFileEditable);
         });
-        return schema.getTable("StoreFile", "org.infomaximum.store");
+        return schema.getTable("StoreFile", "org.forome.store");
     }
 
     private void assertThatSchemaContainsTable(Table expected) throws DatabaseException {

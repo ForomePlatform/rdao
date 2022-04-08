@@ -17,15 +17,15 @@ public class NamespaceValidatorTest extends DomainDataTest {
     @Test
     public void validateValidSchema() throws DatabaseException {
 
-        rocksDBProvider.createColumnFamily("org.infomaximum.database.exception");
-        rocksDBProvider.createColumnFamily("org.infomaximum.database.maintenance");
+        rocksDBProvider.createColumnFamily("org.forome.database.exception");
+        rocksDBProvider.createColumnFamily("org.forome.database.maintenance");
 
-        rocksDBProvider.createColumnFamily("org.infomaximum.rocksdb.exception");
-        rocksDBProvider.createColumnFamily("org.infomaximum.rocksdb.maintenance");
+        rocksDBProvider.createColumnFamily("org.forome.rocksdb.exception");
+        rocksDBProvider.createColumnFamily("org.forome.rocksdb.maintenance");
 
         new NamespaceValidator(rocksDBProvider)
-                .withNamespace("org.infomaximum.database")
-                .withNamespace("org.infomaximum.rocksdb")
+                .withNamespace("org.forome.database")
+                .withNamespace("org.forome.rocksdb")
                 .withNamespace("service")
                 .execute();
         Assert.assertTrue(true);
@@ -34,18 +34,18 @@ public class NamespaceValidatorTest extends DomainDataTest {
     @Test
     public void validateInvalidSchema() throws DatabaseException {
 
-        rocksDBProvider.createColumnFamily("org.infomaximum.database.exception");
-        rocksDBProvider.createColumnFamily("org.infomaximum.database.maintenance");
+        rocksDBProvider.createColumnFamily("org.forome.database.exception");
+        rocksDBProvider.createColumnFamily("org.forome.database.maintenance");
 
-        rocksDBProvider.createColumnFamily("org.infomaximum.rocksdb.exception");
-        rocksDBProvider.createColumnFamily("org.infomaximum.rocksdb.maintenance");
+        rocksDBProvider.createColumnFamily("org.forome.rocksdb.exception");
+        rocksDBProvider.createColumnFamily("org.forome.rocksdb.maintenance");
 
-        rocksDBProvider.createColumnFamily("org.infomaximum.maintenance");
+        rocksDBProvider.createColumnFamily("org.forome.maintenance");
 
         try {
             new NamespaceValidator(rocksDBProvider)
-                    .withNamespace("org.infomaximum.database")
-                    .withNamespace("org.infomaximum.rocksdb")
+                    .withNamespace("org.forome.database")
+                    .withNamespace("org.forome.rocksdb")
                     .execute();
             Assert.fail();
         } catch (InconsistentDatabaseException e) {

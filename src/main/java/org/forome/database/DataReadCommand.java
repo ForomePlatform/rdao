@@ -8,8 +8,8 @@ import org.forome.database.provider.DBDataReader;
 import org.forome.database.schema.dbstruct.DBField;
 import org.forome.database.schema.dbstruct.DBSchema;
 import org.forome.database.schema.dbstruct.DBTable;
-import org.infomaximum.database.domainobject.filter.*;
-import org.infomaximum.database.engine.*;
+import org.forome.database.domainobject.filter.*;
+import org.forome.database.engine.*;
 
 import java.util.Set;
 

@@ -1,7 +1,7 @@
 package org.forome.domain;
 
 import org.forome.database.anotation.*;
-import org.infomaximum.database.anotation.*;
+import org.forome.database.anotation.*;
 import org.forome.database.domainobject.DomainObject;
 import org.forome.database.domainobject.filter.RangeFilter;
 import org.forome.database.utils.EnumConverter;
@@ -14,7 +14,7 @@ import java.time.LocalDateTime;
  * Created by user on 19.04.2017.
  */
 @Entity(
-        namespace = "org.infomaximum.store",
+        namespace = "org.forome.store",
         name = "StoreFile",
         fields = {
                 @Field(number = StoreFileReadable.FIELD_FILE_NAME, name = "name", type = String.class),

@@ -11,7 +11,7 @@ import java.time.Instant;
  * Created by kris on 27.06.17.
  */
 @Entity(
-        namespace = "org.infomaximum.exchange",
+        namespace = "org.forome.exchange",
         name = "ExchangeFolder",
         fields = {
                 @Field(number = ExchangeFolderReadable.FIELD_UUID, name = "uuid", type = String.class),

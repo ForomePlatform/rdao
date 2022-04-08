@@ -14,9 +14,9 @@ public class SelfDependencyTest extends StoreFileDataTest {
         recordSource = new RecordSource(rocksDBProvider);
 
         long recordId = recordSource.executeFunctionTransactional(transaction ->
-                transaction.insertRecord("SelfDependency", "org.infomaximum.self", new String[] {}, new Object[] {}));
+                transaction.insertRecord("SelfDependency", "org.forome.self", new String[] {}, new Object[] {}));
         recordSource.executeTransactional(transaction -> {
-            transaction.insertRecord("SelfDependency", "org.infomaximum.self", new Object[] {recordId});
+            transaction.insertRecord("SelfDependency", "org.forome.self", new Object[] {recordId});
         });
     }
     
@@ -26,9 +26,9 @@ public class SelfDependencyTest extends StoreFileDataTest {
         recordSource = new RecordSource(rocksDBProvider);
 
         long recordId = recordSource.executeFunctionTransactional(transaction ->
-                transaction.insertRecord("SelfDependency", "org.infomaximum.self", new String[] {}, new Object[] {}));
+                transaction.insertRecord("SelfDependency", "org.forome.self", new String[] {}, new Object[] {}));
         recordSource.executeTransactional(transaction -> {
-            transaction.updateRecord("SelfDependency", "org.infomaximum.self", recordId, new String[] {"dependence"}, new Object[] {recordId});
+            transaction.updateRecord("SelfDependency", "org.forome.self", recordId, new String[] {"dependence"}, new Object[] {recordId});
         });
     }
 }

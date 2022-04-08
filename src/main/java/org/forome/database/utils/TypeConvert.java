@@ -2,9 +2,9 @@ package org.forome.database.utils;
 
 import org.forome.database.exception.UnsupportedTypeException;
 import org.forome.database.schema.TypeConverter;
-import org.google.common.primitives.Ints;
-import org.google.common.primitives.Longs;
-import org.google.common.primitives.UnsignedInteger;
+import com.google.common.primitives.Ints;
+import com.google.common.primitives.Longs;
+import com.google.common.primitives.UnsignedInteger;
 
 import java.io.Serializable;
 import java.nio.ByteBuffer;

@@ -45,7 +45,7 @@ public class IdIteratorTest extends StoreFileDataTest {
         final int insertedRecordCount = 10;
         initAndFillStoreFiles(domainObjectSource, insertedRecordCount);
 
-        try (RecordIterator i = recordSource.select("StoreFile", "org.infomaximum.store", new IdFilter(0))) {
+        try (RecordIterator i = recordSource.select("StoreFile", "org.forome.store", new IdFilter(0))) {
             int iteratedRecordCount = 0;
             while (i.hasNext()) {
                 Record storeFile = i.next();
@@ -60,7 +60,7 @@ public class IdIteratorTest extends StoreFileDataTest {
                 ? 0
                 : (expectedToId - expectedFromId) + 1;
 
-        try (RecordIterator i = recordSource.select("StoreFile", "org.infomaximum.store", filter)) {
+        try (RecordIterator i = recordSource.select("StoreFile", "org.forome.store", filter)) {
             long iteratedRecordCount = 0;
             long currId = expectedFromId;
             Record storeFile = null;

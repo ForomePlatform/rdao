@@ -13,7 +13,7 @@ import org.forome.database.schema.Schema;
 import org.forome.database.utils.TypeConvert;
 import org.forome.domain.ExchangeFolderEditable;
 import org.forome.domain.StoreFileReadable;
-import org.infomaximum.domain.*;
+import org.forome.domain.*;
 import org.assertj.core.api.Assertions;
 import org.junit.Assert;
 import org.junit.jupiter.api.Test;

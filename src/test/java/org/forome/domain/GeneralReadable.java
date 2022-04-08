@@ -6,7 +6,7 @@ import org.forome.database.anotation.HashIndex;
 import org.forome.database.domainobject.DomainObject;
 
 @Entity(
-        namespace = "org.infomaximum.rocksdb",
+        namespace = "org.forome.rocksdb",
         name = "general",
         fields = {
                 @Field(number = GeneralReadable.FIELD_VALUE, name = "value", type = Long.class),

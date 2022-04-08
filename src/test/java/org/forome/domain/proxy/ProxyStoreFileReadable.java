@@ -9,7 +9,7 @@ import org.forome.domain.type.FormatType;
  * Created by user on 19.04.2017.
  */
 @Entity(
-        namespace = "org.infomaximum.store",
+        namespace = "org.forome.store",
         name = "StoreFile",
         fields = {
                 @Field(number = ProxyStoreFileReadable.FIELD_FILE_NAME, name = "name", type = String.class),

@@ -2,11 +2,11 @@ package org.forome.database.domainobject;
 
 import org.forome.database.DataCommand;
 import org.forome.database.domainobject.filter.*;
-import org.google.common.primitives.Longs;
+import com.google.common.primitives.Longs;
 import org.forome.database.Record;
 import org.forome.database.RecordIterator;
 import org.forome.database.RecordSource;
-import org.infomaximum.database.domainobject.filter.*;
+import org.forome.database.domainobject.filter.*;
 import org.forome.database.exception.DatabaseException;
 import org.forome.database.schema.Schema;
 import org.forome.domain.ExchangeFolderReadable;
@@ -20,10 +20,10 @@ import java.util.stream.LongStream;
 
 public abstract class StoreFileDataTest extends DomainDataTest {
 
-    protected static final String STORE_FILE_NAMESPACE = "org.infomaximum.store";
+    protected static final String STORE_FILE_NAMESPACE = "org.forome.store";
     protected static final String STORE_FILE_NAME = "StoreFile";
     protected static final String FOLDER_FILE_NAME = "ExchangeFolder";
-    protected static final String FOLDER_FILE_NAMESPACE = "org.infomaximum.exchange";
+    protected static final String FOLDER_FILE_NAMESPACE = "org.forome.exchange";
 
     protected Schema schema;
     protected RecordSource recordSource;

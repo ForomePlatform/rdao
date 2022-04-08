@@ -7,7 +7,7 @@ import org.forome.database.schema.dbstruct.DBRangeIndex;
 import org.forome.database.schema.dbstruct.DBTable;
 import org.forome.database.utils.key.KeyUtils;
 import org.forome.database.utils.key.RangeIndexKey;
-import org.infomaximum.database.provider.*;
+import org.forome.database.provider.*;
 
 import java.util.ArrayList;
 

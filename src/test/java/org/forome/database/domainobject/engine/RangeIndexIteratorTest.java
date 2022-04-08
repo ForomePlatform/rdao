@@ -51,7 +51,7 @@ public class RangeIndexIteratorTest extends StoreFileDataTest {
 //        assertEquals(Arrays.asList(2L, 1L, 3L), findAll(new Interval(value - 1, value + 1)));
 //
 //        recordSource.executeTransactional(transaction -> {
-//            try (RecordIterator iterator = recordSource.select("StoreFile", "org.infomaximum.store")) {
+//            try (RecordIterator iterator = recordSource.select("StoreFile", "org.forome.store")) {
 //                while (iterator.hasNext()) {
 //                    transaction.remove(iterator.next());
 //                }
@@ -84,20 +84,20 @@ public class RangeIndexIteratorTest extends StoreFileDataTest {
 
         RangeFilter rangeFilter = new RangeFilter(StoreFileReadable.RANGE_INSTANT_FIELD, InstantUtils.MIN, InstantUtils.ZERO.minus(Duration.ofMillis(1)));
         try (RecordIterator iterator = recordSource
-                .select("StoreFile", "org.infomaximum.store", rangeFilter)) {
+                .select("StoreFile", "org.forome.store", rangeFilter)) {
             Assertions.assertThat(iterator.hasNext()).isTrue();
         }
 
         rangeFilter = new RangeFilter(StoreFileReadable.RANGE_INSTANT_FIELD, InstantUtils.ZERO.plus(Duration.ofMillis(1)), InstantUtils.MAX);
         try (RecordIterator i = recordSource
-                .select("StoreFile", "org.infomaximum.store", rangeFilter)) {
+                .select("StoreFile", "org.forome.store", rangeFilter)) {
             Assertions.assertThat(i.hasNext()).isTrue();
         }
 
         Assertions.assertThatThrownBy(() -> {
             RangeFilter rangeFilter1 = new RangeFilter(StoreFileReadable.RANGE_INSTANT_FIELD, InstantUtils.ZERO.plus(Duration.ofMillis(1)), InstantUtils.MAX.plus(Duration.ofMillis(1)));
             try (RecordIterator i = recordSource
-                    .select("StoreFile", "org.infomaximum.store", rangeFilter1)) {
+                    .select("StoreFile", "org.forome.store", rangeFilter1)) {
                 Assertions.assertThat(i.hasNext()).isTrue();
             }
         }).isExactlyInstanceOf(ArithmeticException.class);
@@ -122,7 +122,7 @@ public class RangeIndexIteratorTest extends StoreFileDataTest {
                 LocalDateTime.of(2018, 2, 5, 18, 30, 6)
         );
         try (RecordIterator i = recordSource
-                .select("StoreFile", "org.infomaximum.store", rangeFilter)) {
+                .select("StoreFile", "org.forome.store", rangeFilter)) {
             Assertions.assertThat(i.hasNext()).isTrue();
         }
 
@@ -131,7 +131,7 @@ public class RangeIndexIteratorTest extends StoreFileDataTest {
                 LocalDateTimeUtils.MAX
         );
         try (RecordIterator i = recordSource
-                .select("StoreFile", "org.infomaximum.store", rangeFilter)) {
+                .select("StoreFile", "org.forome.store", rangeFilter)) {
             Assertions.assertThat(i.hasNext()).isTrue();
             i.next();
             Assertions.assertThat(i.hasNext()).isTrue();
@@ -171,7 +171,7 @@ public class RangeIndexIteratorTest extends StoreFileDataTest {
                 Long.MAX_VALUE
         ).appendHashedField(StoreFileEditable.FIELD_FOLDER_ID, 2L);
         try (RecordIterator i = recordSource
-                .select("StoreFile", "org.infomaximum.store", rangeFilter)) {
+                .select("StoreFile", "org.forome.store", rangeFilter)) {
             Assertions.assertThat(i.hasNext()).isTrue();
             Assertions.assertThat(i.next().getId()).isEqualTo(2L);
             Assertions.assertThat(i.hasNext()).isFalse();
@@ -452,7 +452,7 @@ public class RangeIndexIteratorTest extends StoreFileDataTest {
         ).appendHashedField(StoreFileReadable.FIELD_FOLDER_ID, 1L);
 
         List<Long> ids = new ArrayList<>();
-        try (RecordIterator i = recordSource.select("StoreFile", "org.infomaximum.store", filter)) {
+        try (RecordIterator i = recordSource.select("StoreFile", "org.forome.store", filter)) {
             while (i.hasNext()) {
                 ids.add(i.next().getId());
             }
@@ -536,7 +536,7 @@ public class RangeIndexIteratorTest extends StoreFileDataTest {
 //        });
 //
 //        domainObjectSource.executeTransactional(transaction -> {
-//            try (RecordIterator i = recordSource.select("StoreFile", "org.infomaximum.store")) {
+//            try (RecordIterator i = recordSource.select("StoreFile", "org.forome.store")) {
 //                while (i.hasNext()) {
 //                    transaction.remove(i.next());
 //                }
@@ -620,7 +620,7 @@ public class RangeIndexIteratorTest extends StoreFileDataTest {
         if (interval.folderId != null) {
             rangeFilter.appendHashedField(StoreFileReadable.FIELD_FOLDER_ID, interval.folderId);
         }
-        try (RecordIterator i = recordSource.select("StoreFile", "org.infomaximum.store", rangeFilter)) {
+        try (RecordIterator i = recordSource.select("StoreFile", "org.forome.store", rangeFilter)) {
             while (i.hasNext()) {
                 result.add(i.next());
             }

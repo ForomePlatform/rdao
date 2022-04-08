@@ -30,7 +30,7 @@ public class SchemaServiceTest extends DomainDataTest {
         });
 
         SchemaService schemaService = new SchemaService(rocksDBProvider)
-                .setNamespace("org.infomaximum.store")
+                .setNamespace("org.forome.store")
                 .setChangeMode(ChangeMode.NONE)
                 .setSchema(Schema.read(rocksDBProvider));
 

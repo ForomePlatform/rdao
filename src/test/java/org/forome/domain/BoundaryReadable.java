@@ -1,12 +1,12 @@
 package org.forome.domain;
 
 import org.forome.database.anotation.*;
-import org.infomaximum.database.anotation.*;
+import org.forome.database.anotation.*;
 import org.forome.database.domainobject.DomainObject;
 import org.forome.database.domainobject.filter.RangeFilter;
 
 @Entity(
-        namespace = "org.infomaximum.store",
+        namespace = "org.forome.store",
         name = "StoreFile",
         fields = {
                 @Field(number = BoundaryReadable.FIELD_LONG_1, name = "long_1", type = Long.class),
