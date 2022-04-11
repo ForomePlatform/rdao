@@ -2,6 +2,7 @@ plugins {
     id 'java'
     id 'maven'
     id 'signing'
+    id 'io.codearte.nexus-staging' version '0.11.0'
 }
 
 group 'org.forome'
@@ -105,3 +106,7 @@ uploadArchives {
         }
     }
 }
+
+nexusStaging {
+    packageGroup = "org.forome" //optional if packageGroup == project.getGroup()
+ }
