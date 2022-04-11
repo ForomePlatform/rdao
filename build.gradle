@@ -1,7 +1,29 @@
-group 'com.infomaximum'
+plugins {
+    id 'java'
+    id 'maven'
+    id 'signing'
+    id 'io.codearte.nexus-staging' version '0.11.0'
+}
+
+group 'org.forome'
 version '1.13.2'
 
-apply plugin: 'java'
+compileJava.options.encoding = 'UTF-8'
+compileTestJava.options.encoding = 'UTF-8'
+
+tasks.withType(JavaCompile) {
+    options.encoding = "UTF-8"
+}
+
+// 1st approach
+javadoc.options.encoding = 'UTF-8'
+
+// 2nd approach
+tasks.withType(Javadoc) {
+    options.encoding = 'UTF-8'
+}
+
+archivesBaseName = "rdao"
 
 if (project.hasProperty('ossrhUsername')) {
     apply from: 'publish.gradle'
@@ -49,3 +71,42 @@ dependencies {
 }
 
 task test_performance(type: Test, description: 'Performance test', group: 'Verification') {}
+
+uploadArchives {
+    repositories {
+        mavenDeployer {
+            beforeDeployment { MavenDeployment deployment -> signing.signPom(deployment) }
+
+            repository(url: "https://s01.oss.sonatype.org/service/local/staging/deploy/maven2/") {
+                authentication(userName: ossrhUsername, password: ossrhPassword)
+            }
+
+            snapshotRepository(url: "https://s01.oss.sonatype.org/content/repositories/snapshots/") {
+                authentication(userName: ossrhUsername, password: ossrhPassword)
+            }
+
+            pom.project {
+                name 'Example Application'
+                packaging 'jar'
+                url 'https://github.com/ForomePlatform/rdao'
+
+                scm {
+                    connection 'scm:git:https://github.com/ForomePlatform/rdao.git'
+                    developerConnection 'scm:svn:https://github.com/ForomePlatform/rdao.git'
+                    url 'https://github.com/ForomePlatform/rdao.git'
+                }
+
+                licenses {
+                    license {
+                        name 'The Apache License, Version 2.0'
+                        url 'http://www.apache.org/licenses/LICENSE-2.0.txt'
+                    }
+                }
+            }
+        }
+    }
+}
+
+nexusStaging {
+    packageGroup = "org.forome" //optional if packageGroup == project.getGroup()
+ }

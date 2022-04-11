@@ -39,12 +39,12 @@ uploadArchives {
                 packaging 'jar'
                 // optionally artifactId can be defined here
                 description 'A simple DAO library for rocksdb'
-                url 'https://github.com/Infomaximum/rdao'
+                url 'https://github.com/forome/rdao'
 
                 scm {
-                    connection 'scm:git:https://github.com/Infomaximum/rdao.git'
-                    developerConnection 'scm:git:git@github.com:Infomaximum/rdao.git'
-                    url 'https://github.com/Infomaximum/rdao'
+                    connection 'scm:git:https://github.com/forome/rdao.git'
+                    developerConnection 'scm:git:git@github.com:forome/rdao.git'
+                    url 'https://github.com/forome/rdao'
                 }
 
                 licenses {
@@ -56,9 +56,9 @@ uploadArchives {
 
                 developers {
                     developer {
-                        id 'infomaximum'
-                        name 'Infomaximum LLC'
-                        email 'develop@infomaximum.com'
+                        id 'forome'
+                        name 'forome LLC'
+                        email 'develop@forome.com'
                     }
                 }
             }

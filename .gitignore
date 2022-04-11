@@ -1,4 +1,6 @@
 .gradle/
+*.gpg
+gradle.properties
 build/
 .idea/
 
